@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+}
+/*
+有这个说明高和宽已经加了padding and border，如果这个设置子在app.css中那么其所有子元素的css将自动高和宽加padding and border，如果需要改变padding and border 只需在子元素的css中改变其padding and border，不会影响其他子元素。
+
+整个项目的css用app.css来决定其相同的部分
+
+看不懂的话看下面解释！
+Suppose you have an HTML element with the following CSS properties:
+Without 'box-sizing: border-box;' 
+div {
+  width: 200px;
+  height: 100px;
+  padding: 20px;
+  border: 2px solid black;
+  margin: 10px;
+}
+Without box-sizing: border-box;, the total width and height of the element would be:
+Total width: 200px (width) + 2 * 20px (padding) + 2 * 2px (border) + 2 * 10px (margin) = 284px
+Total height: 100px (height) + 2 * 20px (padding) + 2 * 2px (border) + 2 * 10px (margin) = 164px
+Now, let's see the same element with box-sizing: border-box;:
+With 'box-sizing: border-box;' -
+div {
+  box-sizing: border-box;
+  width: 200px;
+  height: 100px;
+  padding: 20px;
+  border: 2px solid black;
+  margin: 10px;
+}
+
+With box-sizing: border-box;, the specified width and height values will include the padding and border, resulting in:
+Total width: 200px (width) (includes padding and border) + 2 * 10px (margin) = 220px
+Total height: 100px (height) (includes padding and border) + 2 * 10px (margin) = 120px
+
+如果你希望在子元素中单独改变 `padding` 和 `border` 的样式，你可以在子元素的 CSS 中重新设置这些样式。子元素的 CSS 样式不会受到 `box-sizing: border-box;` 的影响，因为该样式只在设置它的元素及其后代元素中生效。
+
+假设你在 `app.css` 中设置了 `box-sizing: border-box;`，但你希望在某个子元素中改变 `padding` 和 `border` 的样式，你可以在子元素的 CSS 中进行如下设置：
+
+```css
+ app.css 
+* {
+  box-sizing: border-box;
+}
+app.js 
+const App = () => {
+  return (
+    <div className="app">
+      <div className="box">
+        Content
+        <div className="custom-box">
+          Child Element
+        </div>
+      </div>
+    </div>
+  );
+};
+
+ app.css 
+.box {
+  padding: 20px;
+  border: 2px solid black;
+}
+
+.custom-box {
+  在这里可以单独设置子元素的padding和border 
+  padding: 10px;
+  border: 1px solid red;
+}
+```
+
+在上面的示例中，`App` 组件的子元素 `custom-box` 中的 CSS 样式会覆盖在 `box` 类中设置的 `padding` 和 `border` 样式。这样，你可以在子元素中根据需要单独设置 `padding` 和 `border`，而不会受到父级元素的样式影响。
+
+请注意，每个组件或元素都有其自己的作用域，因此在不同的组件或元素中，你可以定义相同的类名，它们之间的样式不会相互影响。这种作用域隔离允许你在不同的地方使用相同的类名，而不用担心冲突。
+
+*/
+body {
+  margin: 0;
+  background-color: #efefef;
+  font-family: "Fredoka", sans-serif;
+}
